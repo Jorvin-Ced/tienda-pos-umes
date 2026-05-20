@@ -2,23 +2,25 @@ def registrar_cliente(lista_clientes):
     print("\n--- REGISTRAR NUEVO CLIENTE ---")
     nit = input("Ingrese el NIT del cliente (o 'CF'): ").strip().upper()
     
-    # Validación: Si es CF no importa si se repite, pero si es un NIT específico
-    # debemos revisar que no exista ya en la base de datos de Doña Marta.
     if nit != "CF":
         for cliente in lista_clientes:
             if cliente["nit"] == nit:
-                print(f"¡Error! El cliente con NIT {nit} ya se encuentra registrado.")
-                print(f"Nombre registrado: {cliente['nombre']}")
+                print(f"¡Error! El cliente con NIT {nit} ya existe.")
                 return
 
     nombre = input("Nombre completo del cliente: ").strip()
     telefono = input("Teléfono de contacto: ").strip()
+    email = input("Correo electrónico: ").strip()
     
-    # Estructura de diccionario exigida para el JSON
+    if nit != "CF" and ("@" not in email or "." not in email):
+        print("Error: El correo electrónico no es válido (debe contener '@' y '.').")
+        return
+    
     nuevo_cliente = {
         "nit": nit,
         "nombre": nombre,
-        "telefono": telefono
+        "telefono": telefono,
+        "email": email
     }
     
     lista_clientes.append(nuevo_cliente)
@@ -30,13 +32,12 @@ def mostrar_clientes(lista_clientes):
         print("No hay clientes registrados aún.")
         return
         
-    print(f"{'NIT':<15} | {'Nombre':<25} | {'Teléfono':<12}")
-    print("-" * 58)
+    print(f"{'NIT':<12} | {'Nombre':<20} | {'Teléfono':<10} | {'Email':<20}")
+    print("-" * 70)
     for cliente in lista_clientes:
-        print(f"{cliente['nit']:<15} | {cliente['nombre']:<25} | {cliente['telefono']:<12}")
+        print(f"{cliente['nit']:<12} | {cliente['nombre']:<20} | {cliente['telefono']:<10} | {cliente['email']:<20}")
 
 def menu_clientes(lista_clientes):
-    """Función principal que conecta con main.py"""
     while True:
         print("\n=== MENÚ DE CLIENTES ===")
         print("1. Registrar Cliente")
@@ -53,4 +54,4 @@ def menu_clientes(lista_clientes):
             print("Regresando...")
             break
         else:
-            print("Opción inválida. Intente de nuevo.")
+            print("Opción inválida.")

@@ -1,7 +1,7 @@
 def registrar_producto(lista_productos):
-    print("--- REGISTRAR NUEVO PRODUCTO ---")
+    print("\n--- REGISTRAR NUEVO PRODUCTO ---")
     try:
-        codigo = input("Ingrese el código único del producto: ").strip()
+        codigo = input("Ingrese el código único del producto: ").strip().upper()
         
         for prod in lista_productos:
             if prod["codigo"] == codigo:
@@ -9,14 +9,22 @@ def registrar_producto(lista_productos):
                 return
 
         nombre = input("Nombre del producto: ").strip()
+        categoria = input("Categoría (Abarrotes, Bebidas, etc.): ").strip()
         precio = float(input("Precio de venta (en Q): "))
         stock = int(input("Cantidad inicial en stock: "))
+        stock_minimo = int(input("Stock mínimo de alerta: "))
+        
+        if precio < 0 or stock < 0 or stock_minimo < 0:
+            print("Error: Los valores numéricos no pueden ser negativos.")
+            return
         
         nuevo_producto = {
             "codigo": codigo,
             "nombre": nombre,
+            "categoria": categoria,
             "precio": precio,
-            "stock": stock
+            "stock": stock,
+            "stock_minimo": stock_minimo
         }
         
         lista_productos.append(nuevo_producto)
@@ -26,22 +34,37 @@ def registrar_producto(lista_productos):
         print("Error: El precio y el stock deben ser valores numéricos.")
 
 def mostrar_inventario(lista_productos):
-    print("--- INVENTARIO DE PRODUCTOS ---")
+    print("\n--- INVENTARIO DE PRODUCTOS ---")
     if not lista_productos:
         print("El inventario está vacío.")
         return
         
-    print(f"{'Código':<12} | {'Nombre':<20} | {'Precio':<10} | {'Stock':<6}")
-    print("-" * 55)
+    print(f"{'Código':<10} | {'Nombre':<20} | {'Categoría':<15} | {'Precio':<8} | {'Stock':<6}")
+    print("-" * 70)
     for prod in lista_productos:
-        print(f"{prod['codigo']:<12} | {prod['nombre']:<20} | Q{prod['precio']:<9.2f} | {prod['stock']:<6}")
+        print(f"{prod['codigo']:<10} | {prod['nombre']:<20} | {prod['categoria']:<15} | Q{prod['precio']:<7.2f} | {prod['stock']:<6}")
+
+def buscar_producto(lista_productos):
+    print("\n--- BUSCAR PRODUCTO ---")
+    busqueda = input("Ingrese el código o nombre a buscar: ").strip().lower()
+    encontrados = []
+    
+    for prod in lista_productos:
+        if busqueda in prod["codigo"].lower() or busqueda in prod["nombre"].lower():
+            encontrados.append(prod)
+            
+    if not encontrados:
+        print("No se encontraron productos que coincidan.")
+    else:
+        mostrar_inventario(encontrados)
 
 def menu_productos(lista_productos):
     while True:
-        print("=== MENÚ DE PRODUCTOS ===")
+        print("\n=== MENÚ DE PRODUCTOS ===")
         print("1. Registrar Producto")
         print("2. Mostrar Inventario")
-        print("3. Regresar al Menú Principal")
+        print("3. Buscar Producto (Parcial)")
+        print("4. Regresar al Menú Principal")
         
         opcion = input("Seleccione una opción: ")
         
@@ -50,8 +73,9 @@ def menu_productos(lista_productos):
         elif opcion == "2":
             mostrar_inventario(lista_productos)
         elif opcion == "3":
+            buscar_producto(lista_productos)
+        elif opcion == "4":
             print("Regresando...")
             break
         else:
             print("Opción inválida.")
-            # aqui va la logica, no seas pendejo xD
