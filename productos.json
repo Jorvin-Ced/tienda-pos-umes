@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "codigo": "1247",
+        "nombre": "Peras",
+        "categoria": "frutas",
+        "precio": 5.0,
+        "stock": 15,
+        "stock_minimo": 2
+    },
+    {
+        "codigo": "1234",
+        "nombre": "Pañales",
+        "categoria": "higiene",
+        "precio": 2.0,
+        "stock": 50,
+        "stock_minimo": 10
+    },
+    {
+        "codigo": "1235",
+        "nombre": "Coca Cola",
+        "categoria": "Bebida",
+        "precio": 23.0,
+        "stock": 12,
+        "stock_minimo": 2
+    }
+]

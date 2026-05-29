@@ -1,4 +1,4 @@
-# 1. Asegúrate de tener las importaciones correctas al inicio del archivo
+# 1. Importaiones correctas, no pendejo, no es necesario importar todo el modulo, solo lo que se va a usar
 import productos
 import clientes
 import ventas
@@ -6,7 +6,7 @@ import reportes
 import utilidades
 
 def main():
-    # 2. Esto ya lo tienen bien: la carga de las bases de datos
+    # 2. Esto ya aqui se carga la base de datos pa que entendas 
     BD_PRODUCTOS = utilidades.cargar_datos("productos.json")
     BD_CLIENTES = utilidades.cargar_datos("clientes.json")
     BD_VENTAS = utilidades.cargar_datos("ventas.json")

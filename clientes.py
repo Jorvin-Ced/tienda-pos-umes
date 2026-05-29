@@ -1,5 +1,5 @@
 def registrar_cliente(lista_clientes):
-    print("\n--- REGISTRAR NUEVO CLIENTE ---")
+    print("--- REGISTRAR NUEVO CLIENTE ---")
     nit = input("Ingrese el NIT del cliente (o 'CF'): ").strip().upper()
     
     if nit != "CF":
@@ -27,7 +27,7 @@ def registrar_cliente(lista_clientes):
     print(f"¡Cliente '{nombre}' registrado exitosamente!")
 
 def mostrar_clientes(lista_clientes):
-    print("\n--- BASE DE DATOS DE CLIENTES ---")
+    print("--- BASE DE DATOS DE CLIENTES ---")
     if not lista_clientes:
         print("No hay clientes registrados aún.")
         return
@@ -39,7 +39,7 @@ def mostrar_clientes(lista_clientes):
 
 def menu_clientes(lista_clientes):
     while True:
-        print("\n=== MENÚ DE CLIENTES ===")
+        print("=== MENÚ DE CLIENTES ===")
         print("1. Registrar Cliente")
         print("2. Mostrar Lista de Clientes")
         print("3. Regresar al Menú Principal")

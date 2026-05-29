@@ -1,5 +1,5 @@
 def registrar_producto(lista_productos):
-    print("\n--- REGISTRAR NUEVO PRODUCTO ---")
+    print("--- REGISTRAR NUEVO PRODUCTO ---")
     try:
         codigo = input("Ingrese el código único del producto: ").strip().upper()
         
@@ -34,7 +34,7 @@ def registrar_producto(lista_productos):
         print("Error: El precio y el stock deben ser valores numéricos.")
 
 def mostrar_inventario(lista_productos):
-    print("\n--- INVENTARIO DE PRODUCTOS ---")
+    print("--- INVENTARIO DE PRODUCTOS ---")
     if not lista_productos:
         print("El inventario está vacío.")
         return
@@ -45,7 +45,7 @@ def mostrar_inventario(lista_productos):
         print(f"{prod['codigo']:<10} | {prod['nombre']:<20} | {prod['categoria']:<15} | Q{prod['precio']:<7.2f} | {prod['stock']:<6}")
 
 def buscar_producto(lista_productos):
-    print("\n--- BUSCAR PRODUCTO ---")
+    print("--- BUSCAR PRODUCTO ---")
     busqueda = input("Ingrese el código o nombre a buscar: ").strip().lower()
     encontrados = []
     
@@ -60,7 +60,7 @@ def buscar_producto(lista_productos):
 
 def menu_productos(lista_productos):
     while True:
-        print("\n=== MENÚ DE PRODUCTOS ===")
+        print("=== MENÚ DE PRODUCTOS ===")
         print("1. Registrar Producto")
         print("2. Mostrar Inventario")
         print("3. Buscar Producto (Parcial)")
